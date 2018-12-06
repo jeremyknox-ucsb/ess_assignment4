@@ -17,3 +17,104 @@ library(ggrepel)
 library(reshape2)
 library(stargazer)
 ```
+
+
+Data Frame:
+```{r}
+#### Current ####
+norm_ht = pnorm(5, mean=2.5, sd=3, lower.tail=F)
+norm_lt = pnorm(5, mean=-2.5, sd=3, lower.tail=F)
+norm_ny_flood = norm_ht
+               +norm_lt
+storm_one_ht = pnorm(5, mean=3.5, sd=3, lower.tail=F)
+storm_one_lt = pnorm(5, mean=-1.5, sd=3, lower.tail=F)
+storm_one_ny_flood = storm_one_ht
+                    +storm_one_lt
+storm_two_ht = pnorm(5, mean=4.5, sd=3, lower.tail=F)
+storm_two_lt = pnorm(5, mean=-0.5, sd=3, lower.tail=F)
+storm_two_ny_flood = storm_two_ht
+                    +storm_two_lt
+storm_three_ht = pnorm(5, mean=5.5, sd=3, lower.tail=F)
+storm_three_lt = pnorm(5, mean=0.5, sd=3, lower.tail=F)
+storm_three_ny_flood = storm_three_ht
+                      +storm_three_lt
+df_norm = data.frame(norm_ny_flood, one_ny_flood, two_ny_flood, three_ny_flood)
+
+
+
+
+#### 2020 Assumptions ####
+assumptions_2020 = c(0,0.0508,0.1524,0.2794)
+
+
+#### 2020  low assumptions_2020[1] ####
+norm_ht = pnorm(5, mean=  (2.5+assumptions_2020[2]), sd=3, lower.tail=F)
+norm_lt = pnorm(5, mean= (-2.5+assumptions_2020[2]), sd=3, lower.tail=F)
+norm_ny_flood = norm_ht
+               +norm_lt
+one_ht = pnorm(5, mean=  (3.5+assumptions_2020[2]), sd=3, lower.tail=F)
+one_lt = pnorm(5, mean= (-1.5+assumptions_2020[2]), sd=3, lower.tail=F)
+one_ny_flood = one_ht
+              +one_lt
+two_ht = pnorm(5, mean=  (4.5+assumptions_2020[2]), sd=3, lower.tail=F)
+two_lt = pnorm(5, mean= (-0.5+assumptions_2020[2]), sd=3, lower.tail=F)
+two_ny_flood = two_ht
+              +two_lt
+three_ht = pnorm(5, mean= (5.5+assumptions_2020[2]), sd=3, lower.tail=F)
+three_lt = pnorm(5, mean= (0.5+assumptions_2020[2]), sd=3, lower.tail=F)
+three_ny_flood = three_ht
+                +three_lt
+df_2020_low = data.frame(norm_ny_flood, one_ny_flood, two_ny_flood, three_ny_flood)
+#
+
+
+#### 2020  mid assumptions_2020[3] ####
+norm_ht = pnorm(5, mean=  (2.5+assumptions_2020[3]), sd=3, lower.tail=F)
+norm_lt = pnorm(5, mean= (-2.5+assumptions_2020[3]), sd=3, lower.tail=F)
+norm_ny_flood = norm_ht
+               +norm_lt
+one_ht = pnorm(5, mean=  (3.5+assumptions_2020[3]), sd=3, lower.tail=F)
+one_lt = pnorm(5, mean= (-1.5+assumptions_2020[3]), sd=3, lower.tail=F)
+one_ny_flood = one_ht
+              +one_lt
+two_ht = pnorm(5, mean=  (4.5+assumptions_2020[3]), sd=3, lower.tail=F)
+two_lt = pnorm(5, mean= (-0.5+assumptions_2020[3]), sd=3, lower.tail=F)
+two_ny_flood = two_ht
+              +two_lt
+three_ht = pnorm(5, mean= (5.5+assumptions_2020[3]), sd=3, lower.tail=F)
+three_lt = pnorm(5, mean= (0.5+assumptions_2020[3]), sd=3, lower.tail=F)
+three_ny_flood = three_ht
+                +three_lt
+df_2020_mid = data.frame(norm_ny_flood, one_ny_flood, two_ny_flood, three_ny_flood)
+###
+
+
+#### 2020  high assumptions_2020[4] ####
+norm_ht = pnorm(5, mean=  (2.5+assumptions_2020[4]), sd=3, lower.tail=F)
+norm_lt = pnorm(5, mean= (-2.5+assumptions_2020[4]), sd=3, lower.tail=F)
+norm_ny_flood = norm_ht
+               +norm_lt
+one_ht = pnorm(5, mean=  (3.5+assumptions_2020[4]), sd=3, lower.tail=F)
+one_lt = pnorm(5, mean= (-1.5+assumptions_2020[4]), sd=3, lower.tail=F)
+one_ny_flood = one_ht
+              +one_lt
+two_ht = pnorm(5, mean=  (4.5+assumptions_2020[4]), sd=3, lower.tail=F)
+two_lt = pnorm(5, mean= (-0.5+assumptions_2020[4]), sd=3, lower.tail=F)
+two_ny_flood = two_ht
+              +two_lt
+three_ht = pnorm(5, mean= (5.5+assumptions_2020[4]), sd=3, lower.tail=F)
+three_lt = pnorm(5, mean= (0.5+assumptions_2020[4]), sd=3, lower.tail=F)
+three_ny_flood = three_ht
+                +three_lt
+df_2020_high = data.frame(norm_ny_flood, one_ny_flood, two_ny_flood, three_ny_flood)
+###
+
+
+# df = merge(df_norm,df_2020_low,df_2020_mid,df_2020_high,
+#            by.x=c("norm_ny_flood","storm_one_ny_flood","storm_two_ny_flood","storm_three_ny_flood"),
+#            all = TRUE)
+
+df = rbind(df_norm,df_2020_low,df_2020_mid,df_2020_high)
+
+```
+
