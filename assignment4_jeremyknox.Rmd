@@ -1,0 +1,19 @@
+---
+title: "Assignment4"
+author: "Jeremy Knox"
+date: "12/6/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(car)
+library(userfriendlyscience)
+library(knitr)
+library(kableExtra)
+library(effsize)
+library(ggrepel)
+library(reshape2)
+library(stargazer)
+```
